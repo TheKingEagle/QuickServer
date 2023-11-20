@@ -14,7 +14,7 @@ namespace CSHttp
 
         private readonly Dictionary<string, Action<HttpListenerContext>> Routes = new Dictionary<string, Action<HttpListenerContext>>();
 
-        readonly HttpListener Listener = new HttpListener();
+        private readonly HttpListener Listener = new HttpListener();
 
         public QuickServer(string host, int port) 
         { 
