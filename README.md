@@ -1,6 +1,4 @@
 # QuickServer
 
 A quick to get started http server using the https listener.
-This it an experiment which may get used in other projects. (Looking at you ModularBOT)
-
-Idk, also possibly good for rest api?
+This is an experiment that may be used in other projects.
