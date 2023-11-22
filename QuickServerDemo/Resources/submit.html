@@ -1,0 +1,14 @@
+<style>
+    form {
+        width:500px;
+        margin:auto;
+    }
+</style>
+
+<h1>Hello! Fill out this form.</h1>
+<form action="/postimg" method="post" enctype="multipart/form-data" style="display:flex; flex-direction:column">
+    <input type="text" name="author" placeholder="Your name/alias" />
+    <input type="file" name="image" />
+    <textarea name="description"></textarea>
+    <input type="submit" value="Post" />
+</form>

@@ -5,9 +5,17 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>1.0.17.17</AssemblyVersion>
-    <FileVersion>1.0.17.17</FileVersion>
+    <AssemblyVersion>1.0.42.42</AssemblyVersion>
+    <FileVersion>1.0.42.42</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RMSoftware.Http\RMSoftware.Http.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="appres.Designer.cs">
@@ -23,6 +31,12 @@
       <LastGenOutput>appres.Designer.cs</LastGenOutput>
       <CustomToolNamespace>AppResources</CustomToolNamespace>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="uploads\.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

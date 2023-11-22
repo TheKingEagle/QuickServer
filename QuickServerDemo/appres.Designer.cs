@@ -39,7 +39,7 @@ namespace AppResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CSHttp.appres", typeof(appres).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("QuickServerDemo.appres", typeof(appres).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,12 +61,49 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;html&gt;
+        ///	&lt;head&gt;
+        ///		&lt;title&gt;QuickServer Demo&lt;/title&gt;
+        ///	&lt;/head&gt;
+        ///	&lt;body&gt;
+        ///		&lt;h1&gt;Hello and Welcome&lt;/h1&gt;
+        ///		
+        ///		&lt;p&gt;This is a simple http server written in C#. This implementation uses data hard coded into the server, or using resx files.&lt;/p&gt;
+        ///		&lt;p&gt;Here is a list of places to visit:&lt;/p&gt;
+        ///		&lt;ul&gt;
+        ///			&lt;li&gt;&lt;a href=&quot;/splash&quot;&gt;A single image&lt;/a&gt;&lt;/li&gt;
+        ///			&lt;li&gt;&lt;a href=&quot;/about&quot;&gt;about&lt;/a&gt;&lt;/li&gt;
+        ///			&lt;li&gt;&lt;a href=&quot;/err&quot;&gt;a 500 server error test&lt;/a&gt;&lt;/li&gt;
+        ///			&lt;li&gt;&lt;a href=&quot;/upload&quot;&gt;A simple image upload screen type thing (Pending i [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string index {
+            get {
+                return ResourceManager.GetString("index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] rmfbsft0 {
             get {
                 object obj = ResourceManager.GetObject("rmfbsft0", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;h1&gt;Hello! Fill out this form.&lt;/h1&gt;
+        ///&lt;form action=&quot;/postimg&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; style=&quot;display:flex; flex-direction:column&quot;&gt;
+        ///    &lt;input type=&quot;text&quot; name=&quot;author&quot; /&gt;
+        ///    &lt;input type=&quot;file&quot; name=&quot;image&quot; /&gt;
+        ///    &lt;textarea name=&quot;description&quot;&gt;&lt;/textarea&gt;
+        ///    &lt;input type=&quot;submit&quot; value=&quot;Post&quot; /&gt;
+        ///&lt;/form&gt;.
+        /// </summary>
+        internal static string submit {
+            get {
+                return ResourceManager.GetString("submit", resourceCulture);
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿using CSHttp;
+﻿
+using AppResources;
+using RMSoftware.Http;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -15,7 +17,7 @@ class Program
 
         qs.DefineRoute("/", (context) =>
         {
-            qs.SendResponse(context.Response, "Hello World!!");
+            qs.SendResponse(context.Response, appres.index);
             Console.WriteLine("Default route");
         });
 
@@ -31,11 +33,25 @@ class Program
             Console.WriteLine("splash route");
         });
 
+        qs.DefineRoute("/upload", (context) =>
+        {
+            qs.SendResponse(context.Response, appres.submit);
+            Console.WriteLine("show upload form");
+        });
+
+        qs.DefineRoute("/postimg", (context) =>
+        {
+            qs.SendResponse(context.Response,"Not implemented",HttpStatusCode.NotImplemented);
+            Console.WriteLine("submit post data.");
+        });
+
         qs.DefineRoute("/err", (context) =>
         {
             qs.SendResponse(context.Response,"Fatal Error",HttpStatusCode.InternalServerError);
             Console.WriteLine("errrrrrr");
         });
+
+        qs.DefineStaticFileRoute("/uploads", "uploads");
         Task.Run(()=> qs.Start());
         Console.WriteLine("Entering console loop. 'exit' to stop.");
         while (true)
