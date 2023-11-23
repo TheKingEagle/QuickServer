@@ -157,7 +157,7 @@ namespace RMSoftware.Http
             response.Close();
         }
 
-        public (FormField[], FileField[]) ParseFormData(HttpListenerRequest request)
+        public (FormField[] Fields, FileField[] Files) ParseFormData(HttpListenerRequest request)
         {
             if (request.ContentType != null)
             {
