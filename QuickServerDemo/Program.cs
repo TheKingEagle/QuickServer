@@ -1,5 +1,7 @@
 ﻿
 using AppResources;
+using Microsoft.VisualBasic;
+using QuickServerDemo;
 using RMSoftware.Http;
 using System;
 using System.Collections.Generic;
@@ -41,8 +43,42 @@ class Program
 
         qs.DefineRoute("/postimg", (context) =>
         {
-            qs.SendResponse(context.Response,"Not implemented",HttpStatusCode.NotImplemented);
-            Console.WriteLine("submit post data.");
+            if (context.Request.HttpMethod != "POST")
+            {
+                qs.SendResponse(context.Response, "Method Not Allowed", HttpStatusCode.MethodNotAllowed);
+                return;
+            }
+
+            var formData = qs.ParseFormData(context.Request);
+
+            FileField? f = formData.Files.FirstOrDefault(x => x.Name == "image");
+
+            if (f == null)
+            {
+                qs.SendResponse(context.Response, "Missing image.", HttpStatusCode.BadRequest);
+
+                return;
+            }
+            
+            if (ImageValidation.IsImageValid(f.FileName,f.Data,out byte[] imageBytes, out string err))
+            {
+                string ts = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                //copy
+                using (FileStream fs = File.Create($"uploads/{ts}.jpg"))
+                {
+                    fs.Write(imageBytes);
+                    fs.Flush();
+                }
+                qs.SendResponse(context.Response, "Uploaded!!", HttpStatusCode.OK);
+            }
+            else
+            {
+                qs.SendResponse(context.Response, "<h3>Invalid image.</h3>\n" + err, HttpStatusCode.BadRequest);
+
+                return;
+            }
+
+
         });
 
         qs.DefineRoute("/err", (context) =>
