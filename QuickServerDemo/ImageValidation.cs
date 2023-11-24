@@ -1,16 +1,11 @@
 ﻿using ImageMagick;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuickServerDemo
 {
-    public class ImageValidation
+    internal class ImageValidation
     {
 
-        public static bool IsImageValid(string filename, Stream imData, out byte[] converted, out string errDetail)
+        internal static bool IsImageValid(string filename, Stream imData, out byte[] converted, out string errDetail)
         {
             try
             {

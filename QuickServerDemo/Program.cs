@@ -1,18 +1,15 @@
 ﻿
 using AppResources;
-using Microsoft.VisualBasic;
 using QuickServerDemo;
 using RMSoftware.Http;
-using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Threading;
 
 class Program
 {
     private static readonly string Host = "localhost";
     private static readonly int Port = 8080;
-    
+
+    private static PhotoWall pw = new PhotoWall();
     static void Main(string[] args)
     {
         QuickServer qs = new QuickServer(Host, Port);
@@ -31,7 +28,7 @@ class Program
 
         qs.DefineRoute("/splash", (context) =>
         {
-            qs.SendResponse(context.Response,"image/png",AppResources.appres.rmfbsft0);
+            qs.SendResponse(context.Response,"image/png", appres.rmfbsft0);
             Console.WriteLine("splash route");
         });
 
@@ -41,6 +38,11 @@ class Program
             Console.WriteLine("show upload form");
         });
 
+        qs.DefineRoute("/wall", (context) =>
+        {
+            qs.SendResponse(context.Response, appres.wall.Replace("<!--PHOTOWALL-->", pw.ToString()));
+            Console.WriteLine("show wall");
+        });
         qs.DefineRoute("/postimg", (context) =>
         {
             if (context.Request.HttpMethod != "POST")
@@ -51,24 +53,27 @@ class Program
 
             var formData = qs.ParseFormData(context.Request);
 
-            FileField? f = formData.Files.FirstOrDefault(x => x.Name == "image");
+            FileField? iamge = formData.Files.FirstOrDefault(x => x.Name == "image");
 
-            if (f == null)
+            FormField? author = formData.Fields.FirstOrDefault(x => x.Name == "author");
+            FormField? description = formData.Fields.FirstOrDefault(x => x.Name == "description");
+
+            if (iamge == null || author == null || description == null)
             {
-                qs.SendResponse(context.Response, "Missing image.", HttpStatusCode.BadRequest);
+                qs.SendResponse(context.Response, "Missing parameters", HttpStatusCode.BadRequest);
 
                 return;
             }
             
-            if (ImageValidation.IsImageValid(f.FileName,f.Data,out byte[] imageBytes, out string err))
+            if (ImageValidation.IsImageValid(iamge.FileName,iamge.Data,out byte[] imageBytes, out string err))
             {
-                string ts = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-                //copy
-                using (FileStream fs = File.Create($"uploads/{ts}.jpg"))
+                string filename = $"uploads/{DateTime.Now:yyyyMMddHHmmssffff}.jpg";
+                using (FileStream fs = File.Create(filename))
                 {
                     fs.Write(imageBytes);
                     fs.Flush();
                 }
+                pw.AddPost(new PhotoWallPost() { Author = author.Value, Description = description.Value ,ImageUrl = filename});
                 qs.SendResponse(context.Response, "Uploaded!!", HttpStatusCode.OK);
             }
             else
@@ -88,6 +93,7 @@ class Program
         });
 
         qs.DefineStaticFileRoute("/uploads", "uploads");
+        qs.DefineStaticFileRoute("/asset", "asset");
         Task.Run(()=> qs.Start());
         Console.WriteLine("Entering console loop. 'exit' to stop.");
         while (true)

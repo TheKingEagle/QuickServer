@@ -5,8 +5,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>1.0.50.50</AssemblyVersion>
-    <FileVersion>1.0.50.50</FileVersion>
+    <AssemblyVersion>1.0.59.59</AssemblyVersion>
+    <FileVersion>1.0.59.59</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="asset\main.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="uploads\.gitkeep">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

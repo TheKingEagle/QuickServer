@@ -61,6 +61,15 @@ namespace AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;img class=&quot;wallpost&quot; title=&quot;Author: $AUTH | Description: $DESC&quot; src=&quot;$URL&quot;/&gt;.
+        /// </summary>
+        internal static string imgmk {
+            get {
+                return ResourceManager.GetString("imgmk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;html&gt;
         ///	&lt;head&gt;
         ///		&lt;title&gt;QuickServer Demo&lt;/title&gt;
@@ -68,13 +77,13 @@ namespace AppResources {
         ///	&lt;body&gt;
         ///		&lt;h1&gt;Hello and Welcome&lt;/h1&gt;
         ///		
-        ///		&lt;p&gt;This is a simple http server written in C#. This implementation uses data hard coded into the server, or using resx files.&lt;/p&gt;
+        ///		&lt;p&gt;This is a simple http server written in C#. This implementation supports hard-coded values, resx, and static file serving (Woah!)&lt;/p&gt;
         ///		&lt;p&gt;Here is a list of places to visit:&lt;/p&gt;
         ///		&lt;ul&gt;
         ///			&lt;li&gt;&lt;a href=&quot;/splash&quot;&gt;A single image&lt;/a&gt;&lt;/li&gt;
         ///			&lt;li&gt;&lt;a href=&quot;/about&quot;&gt;about&lt;/a&gt;&lt;/li&gt;
         ///			&lt;li&gt;&lt;a href=&quot;/err&quot;&gt;a 500 server error test&lt;/a&gt;&lt;/li&gt;
-        ///			&lt;li&gt;&lt;a href=&quot;/upload&quot;&gt;A simple image upload screen type thing (Pending i [rest of string was truncated]&quot;;.
+        ///			&lt;li&gt;&lt;a href=&quot;/upload&quot;&gt;A simple image upload screen type thing (Pe [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string index {
             get {
@@ -93,9 +102,16 @@ namespace AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h1&gt;Hello! Fill out this form.&lt;/h1&gt;
+        ///   Looks up a localized string similar to &lt;style&gt;
+        ///    form {
+        ///        width:500px;
+        ///        margin:auto;
+        ///    }
+        ///&lt;/style&gt;
+        ///
+        ///&lt;h1&gt;Hello! Fill out this form.&lt;/h1&gt;
         ///&lt;form action=&quot;/postimg&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; style=&quot;display:flex; flex-direction:column&quot;&gt;
-        ///    &lt;input type=&quot;text&quot; name=&quot;author&quot; /&gt;
+        ///    &lt;input type=&quot;text&quot; name=&quot;author&quot; placeholder=&quot;Your name/alias&quot; /&gt;
         ///    &lt;input type=&quot;file&quot; name=&quot;image&quot; /&gt;
         ///    &lt;textarea name=&quot;description&quot;&gt;&lt;/textarea&gt;
         ///    &lt;input type=&quot;submit&quot; value=&quot;Post&quot; /&gt;
@@ -104,6 +120,31 @@ namespace AppResources {
         internal static string submit {
             get {
                 return ResourceManager.GetString("submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;html&gt;
+        ///    &lt;head&gt;
+        ///        &lt;title&gt;Photo Wall&lt;/title&gt;
+        ///        &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/main.css&quot; /&gt;
+        ///    &lt;/head&gt;
+        ///    &lt;body&gt;
+        ///        &lt;div class=&quot;container&quot;&gt;
+        ///            &lt;div class=&quot;row&quot;&gt;
+        ///                &lt;h1&gt;Photo Wall Demo&lt;/h1&gt;
+        ///                &lt;p&gt;Here is all content posted.&lt;/p&gt;
+        ///            &lt;/div&gt;
+        ///            &lt;div class=&quot;grid&quot;&gt;
+        ///                &lt;!--PHOTOWALL--&gt;
+        ///            &lt;/div&gt;
+        ///        &lt;/div&gt;
+        ///    &lt;/body&gt;
+        ///&lt;/html&gt;.
+        /// </summary>
+        internal static string wall {
+            get {
+                return ResourceManager.GetString("wall", resourceCulture);
             }
         }
     }
